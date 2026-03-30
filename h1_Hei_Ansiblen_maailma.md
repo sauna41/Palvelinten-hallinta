@@ -11,9 +11,16 @@ ________________________________________________________________________________
 
 ### x) Lue ja tiivistä. 
 
-(Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva. Ei siis vaadita pitkää eikä essee-muotoista tiivistelmää. Lisää kuhunkin jokin oma kysymys tai huomio.)
-Karvinen 2026: SSH public key - Login without password
+**Karvinen 2026: SSH public key - Login without password**
 
+- Julkisen avaimen SSH autentikoinnin avulla vältytään kirjoittamasta salasanaa joka kerta, kun halutaan ottaa SSH-yhteys. Se lisää myös tietoturvaa, sillä "salasana" ei voi vuotaa samanlailla. Kun salasana on luotu, se voidaan kopioida _authorized keys_ muistiin, jolloin avainta voidaan käyttää kirjautumiseen. Samaa avainta voi käyttää useammassa hostissa.
+
+**Karvinen 2026: Hello Ansible**
+
+- Ansible on konfiguraationhallintatyökalu, jossa infrastruktuuri kuvataan koodina (IaC). Se toimii SSH-yhteyden yli. Sen avulla voidaan kuvata lopputilanne ja Ansible suorittaa toimenpiteitä vain silloin, kun ne eivät täyty. Tämän avulla esimerkiksi jo voimassa olevaa ominaisuutta ei tehdä turhaan useaan otteeseen.
+
+- Se tarvitsevat toimiakseen Inventoryn ja Playbookin. Niiden avulla voidaan määritellä mihintoimenpiteet kohdennetaana ja mitä tehdään. 
+  
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### a) Sshecrects: _Asenna SSH-demoni ja testaa se kirjautumalla SSH:lla_
@@ -30,7 +37,7 @@ Kun asennus oli valmis, varmistin, että SSH oli käynnissä komennolla
 
       sudo systemctl status ssh
       
-Lopuksi otin SSH-yhteyden localhostiin
+Lopuksi otin SSH-yhteyden localhostiin. Ensimmäisellä kerrralla tuli varoitus "The authenticity of host localhost can't be established". Tämä johtui siitä, että palvelin ei ollut vielä SSH-demonille tuttu. Vastatessa "yes", yhteys otettiin ja julkinen avain tallentui talteen known_hosts. Jatkossa SSH tiesi, että kyseinen palvelin on turvallinen ja otti yhteyden ilman varoitusta.
 
       ssh henria@localhost
 
@@ -75,6 +82,7 @@ Playbookkina taas puolestaan toimi toinen .yml tiedosto. Loin hei_maailma.yml ti
 
 
 <img width="727" height="155" alt="image" src="https://github.com/user-attachments/assets/6b832aa6-3cdf-4743-ba75-ee2d101f800c" />
+
 
 
 Ajoin kyseisen playbookin komennolla
