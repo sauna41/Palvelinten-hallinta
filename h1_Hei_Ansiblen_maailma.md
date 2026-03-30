@@ -1,9 +1,10 @@
-_Kurssi:_ Palvelinten hallinta ICI001AS3A-3011
-_Tekijä:_ Henri Äikäs
+_Kurssi:_ _Palvelinten hallinta ICI001AS3A-3011_
 
-_Alusta:_ Intel i5 Macbook Pro MacOs Sequaoia 15.7.2 / Debian 13 trixie (VirtualBox)
+_Tekijä: Henri Äikäs_
 
-_Päivämäärä:_ 30.3.2026
+_Alusta: Intel i5 Macbook Pro MacOs Sequaoia 15.7.2 / Debian 13 trixie (VirtualBox)_
+
+_Päivämäärä: 30.3.2026_
 
 Tämä raportti on osa Haaga-Helian Palvelinten hallinta -kurssia keväällä 2026. Tehtävänanto on h1 Hello Ansiblen Maailma. Opettajana toimi Tero Karvinen.
 
