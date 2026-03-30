@@ -78,6 +78,9 @@ Ansiblen toimintaan vaadittiin ns. "osoitekirja" (inventory) ja "pelikirja" (pla
 
 Loin aluksi hosts.ini -tiedoston, johon listataan kaikki tietokoneet, joita Ansiblen halutaan hallita. Itselläni hosts.ini kattoi siis hallittavan koneen IP-osoitteen (localhost), käyttäjänimen ja polun SSH-avaimeen.
 
+<img width="686" height="42" alt="image" src="https://github.com/user-attachments/assets/4fc19631-21bb-4790-a109-1a1e88acf91d" />
+
+
 Playbookkina taas puolestaan toimi toinen .yml tiedosto. Loin hei_maailma.yml tiedoston, johon määrittelin kuvauksen (name), kohderyhmän (local) ja tehtävän (task). Sen tuli tulostaa teksti "Hei maailma! Tämä viesti tulee Ansiblen kautta SSH-yhteydellä".  Tarkoitukseni oli siis se, että Ansible pystyi muodostamaan SSH-yhteyden SSH-avaimella ja suorittamaan komentoja kohdekoneella.
 
 
