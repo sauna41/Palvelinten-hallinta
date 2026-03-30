@@ -95,7 +95,7 @@ Ajoin kyseisen playbookin komennolla
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-### d) Vapaaehtoinen bonus: Uuden käyttäjän luominen Ansiblella
+### d) Vapaaehtoinen bonus: _Uuden käyttäjän luominen Ansiblella_
 
 Loin uuden .yml tiedoston nimeltään uusi_kayttaja.yml. Kuten aiemmassa osiossa, määritin sille kuvauksen, ryhmän ja tehtävän. Koska uuden käyttäjän luominen on järjestelmänlaajuinen muutos, se vaatii "sudoa". Ansiblessa "become" tarkoittaa muuttumista root-käyttäjäksi eli se on ikäänkuin Ansiblen oma sudo. Sen avulla siis saatiin riittävät oikeudet uuden käyttäjän luomiseen. 
 
