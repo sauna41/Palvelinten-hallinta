@@ -1,9 +1,9 @@
-Kurssi: Palvelinten hallinta ICI001AS3A-3011
-Tekijä: Henri Äikäs
+_Kurssi:_ Palvelinten hallinta ICI001AS3A-3011
+_Tekijä:_ Henri Äikäs
 
-Alusta: Intel i5 Macbook Pro MacOs Sequaoia 15.7.2 / Debian 13 trixie (VirtualBox)
+_Alusta:_ Intel i5 Macbook Pro MacOs Sequaoia 15.7.2 / Debian 13 trixie (VirtualBox)
 
-Päivämäärä: 30.3.2026
+_Päivämäärä:_ 30.3.2026
 
 Tämä raportti on osa Haaga-Helian Palvelinten hallinta -kurssia keväällä 2026. Tehtävänanto on h1 Hello Ansiblen Maailma. Opettajana toimi Tero Karvinen.
 
@@ -48,9 +48,16 @@ Loin uuuden avainparin (julkinen ja yksityinen). Se tapahtui komennolla
 
       ssh-keygen -t ed25519
 
-Tämä loi avainparin, josta kopioin julkisen avaimen localhostiin. 
+Tämä loi avainparin, josta kopioin julkisen avaimen localhostiin komennolla
+
+      ssh-copy-id -i ~/.ssh/id_ed25519.pub henria@localhost
+
+
 
 <img width="1056" height="202" alt="PublicToLocalhost" src="https://github.com/user-attachments/assets/81fe58f6-60e9-46f2-8260-a8d22d7ae33b" />
+
+
+Tämän jälkeen varmistin yhteyden kirjautumalla käyttäjänä henria sisään. 
 
 
 <img width="981" height="200" alt="SSHSuccess" src="https://github.com/user-attachments/assets/e06bd155-6433-4559-951e-31c009443a69" />
@@ -60,24 +67,45 @@ ________________________________________________________________________________
 
 ### c) Hei Ansible: __Tee hei maailma ansiblella ja kokeile sitä SSH:n yli._
 
-Loin uuden hosts.ini tiedoston, johon määrittelin tehtävän. Sen tuli tulostaa teksti "Hei maailma! Tämä viesti tulee Ansiblen kautta SSH-yhteydellä". 
+Ansiblen toimintaan vaadittiin ns. "osoitekirja" (inventory) ja "pelikirja" (playbook). Osoitekirja määrittää missä asiat tapahtuvat ja pelikirja taas mitä tehdään. (Red Hat)
 
+Loin aluksi hosts.ini -tiedoston, johon listataan kaikki tietokoneet, joita Ansiblen halutaan hallita. Itselläni hosts.ini kattoi siis hallittavan koneen IP-osoitteen (localhost), käyttäjänimen ja polun SSH-avaimeen.
+
+Playbookkina taas puolestaan toimi toinen .yml tiedosto. Loin hei_maailma.yml tiedoston, johon määrittelin kuvauksen (name), kohderyhmän (local) ja tehtävän (task). Sen tuli tulostaa teksti "Hei maailma! Tämä viesti tulee Ansiblen kautta SSH-yhteydellä".  Tarkoitukseni oli siis se, että Ansible pystyi muodostamaan SSH-yhteyden SSH-avaimella ja suorittamaan komentoja kohdekoneella.
 
 
 <img width="727" height="155" alt="image" src="https://github.com/user-attachments/assets/6b832aa6-3cdf-4743-ba75-ee2d101f800c" />
 
 
-<img width="1061" height="348" alt="HeiAnsibletulostus" src="https://github.com/user-attachments/assets/428aa874-de9e-4583-a24b-7c00293dc6f0" />
+Ajoin kyseisen playbookin komennolla
 
+      ansible-playbook -i hosts.ini hei_maailma.yml 
+
+
+<img width="1061" height="348" alt="HeiAnsibletulostus" src="https://github.com/user-attachments/assets/428aa874-de9e-4583-a24b-7c00293dc6f0" />
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### d) Vapaaehtoinen bonus: Uuden käyttäjän luominen Ansiblella
 
+Loin uuden .yml tiedoston nimeltään uusi_kayttaja.yml. Kuten aiemmassa osiossa, määritin sille kuvauksen, ryhmän ja tehtävän. Koska uuden käyttäjän luominen on järjestelmänlaajuinen muutos, se vaatii "sudoa". Ansiblessa "become" tarkoittaa muuttumista root-käyttäjäksi eli se on ikäänkuin Ansiblen oma sudo. Sen avulla siis saatiin riittävät oikeudet uuden käyttäjän luomiseen. 
+
+Lisättiin vielä "state: present", minkä avulla Ansible tarkistaa, onko "testihekilö" olemassa. Jos käyttäjä on jo olemassa, Ansible ei enää yritä lisätä toista (Idempotenssi). ShelL:/bin/bash puolestaan varmistaa, että testihenkilöllä on käytössään standardi shelli, eikä esimerkiksi riisuttu versio /bin/sh.
+
+<img width="313" height="220" alt="image" src="https://github.com/user-attachments/assets/dfbda4f0-ab31-4a86-ad33-db3d4f041634" />
+
+
+Testataan uuden käyttäjän luominen:
+
 
 <img width="1063" height="298" alt="image" src="https://github.com/user-attachments/assets/c724def8-6bac-46ea-9df6-ca0296ac27f7" />
 
+
+Varmistettiin uuden käyttäjän luominen 
+
+
+<img width="392" height="42" alt="image" src="https://github.com/user-attachments/assets/2f47586f-b858-4067-8bf8-c1f49126c57e" />
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -88,3 +116,5 @@ Karvinen, T. Palvelinten hallinta kurssimateriaali. Luettavissa: https://terokar
 Karvinen, T. Hello Ansible. Luettavissa: https://terokarvinen.com/hello-ansible/. Luettu 30.3.2026.
 
 Karvinen, T. SSH public key - Login without password. Luettavissa: https://terokarvinen.com/ssh-public-key-login-without-password/. Luettu 30.3.2026.
+
+Red Hat. How Ansible works. Luettavissa: https://www.redhat.com/en/ansible-collaborative/how-ansible-works. Luettu 30.3.2026.
