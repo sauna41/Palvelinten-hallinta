@@ -29,11 +29,10 @@ ________________________________________________________________________________
 
 a) Sudoless. Tee ansiblea varten tunnus, jolla voi käyttää sudoa ilman salasanaa. Sekä ssh-kirjautuminen että sudon käyttö tulee olla ansbilea varten automatisoitu.
 
-<img width="434" height="160" alt="image" src="https://github.com/user-attachments/assets/fb24becc-3e31-4f00-9f92-c48e1642efed" />
-
-<img width="294" height="52" alt="image" src="https://github.com/user-attachments/assets/1e2d8ac2-02f9-4673-9fb0-104d039c1305" />
+<img width="360" height="162" alt="image" src="https://github.com/user-attachments/assets/cad892cb-dab5-449f-9c37-0b86474b0977" />
 
 
+<img width="233" height="56" alt="image" src="https://github.com/user-attachments/assets/e38462f5-06c0-4338-8e6c-10ac1063aff8" />
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
