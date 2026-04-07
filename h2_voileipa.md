@@ -6,7 +6,7 @@ _Alusta: Intel i5 Macbook Pro MacOs Sequaoia 15.7.2 / Debian 13 trixie (VirtualB
 
 _Päivämäärä: 6.4.2026_
 
-Tämä raportti on osa Haaga-Helian Palvelinten hallinta -kurssia keväällä 2026. Tehtävänanto on h1 Hello Ansiblen Maailma. Opettajana toimi Tero Karvinen.
+Tämä raportti on osa Haaga-Helian Palvelinten hallinta -kurssia keväällä 2026. Tehtävänanto on h2 Voileipä. Opettajana toimi Tero Karvinen.
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
