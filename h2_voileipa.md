@@ -19,7 +19,7 @@ ________________________________________________________________________________
 
   
   [Munroe 2006: xkcd 149: Sandwitch](https://xkcd.com/149/)
-  - Määrittelemällä _became: yes_ (kuvan "sudo make a sandwich) voidaan muuttua automaattisesti superkäyttäjäksi, jolloin hallittavat koneet eivät kyseenalaista vaan tottelevat pääkäyttäjää.
+  - Määrittelemällä _become: yes_ (kuvan "sudo make a sandwich) voidaan muuttua automaattisesti superkäyttäjäksi, jolloin hallittavat koneet eivät kyseenalaista vaan tottelevat pääkäyttäjää.
   
   [**Karvinen 2026: Passwordless Sudo with Ansible**](https://terokarvinen.com/passwordless-sudo-with-ansible/)
   - Käyttäjälle voidaan mahdollistaa salasanaton sudottaminen myös automatisoidusti Ansible-roolin avulla
@@ -182,7 +182,20 @@ Oikeuksien oktaalinumerot kertovat samaa tietoa numeraalisesti. Read, Write & Ex
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-e) Jotain muuta. Näytä esimerkki ansiblen käskystä, jota ei ole vielä käsitelty kurssilla tai kotitehtävissä. Voit ottaa jonkun muun modulin kuin apt, file, copy, user tai authorized_key. Tai voit käyttää ominaisuutta, jota ei vielä ole demonstroitu. Jos tiivistystehtävässä x on mainittu ominaisuuksia, joita ei tunneilla tai läksyissä kokeiltu, nekin kelpaavat.
+#### e) Jotain muuta. Näytä esimerkki ansiblen käskystä, jota ei ole vielä käsitelty kurssilla tai kotitehtävissä.
+
+Loin service-moduulin, joka tarkistaa, että nginx on käynnissä ja tarvittaessa käynnistää sen. Loin uuden service.yml -tiedoston, johon määrittelin tarvittavat tiedot:
+
+<img width="410" height="177" alt="image" src="https://github.com/user-attachments/assets/85da4eb1-4bc3-46a0-99af-6b2b73a05ef6" />
+
+
+Varmistin testaamista varten, että nginx ei ollut valmiiksi päällä komennolla
+
+      sudo systemctl stop nginx
+
+Jonka jälkeen ajoin ansiblella service.yml ja testasin, menikö demoni päälle
+
+<img width="657" height="72" alt="image" src="https://github.com/user-attachments/assets/75f3c5a6-2d1d-4929-b16e-702994f8da84" />
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
