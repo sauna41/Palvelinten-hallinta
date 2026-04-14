@@ -158,19 +158,25 @@ Aloitin luomalla nginx_install.yml playbookin automoottorix -hakemistoon.
 
 **Tasks -hakemistoon loin**
 
+- apt name, state & update_cache asentavat nginxin jos sitä ei vielä ole tehty
 -  copy siirtää tiedoston Ansible koneelta palvelimelle.
 -  src kertoo lähdetiedoston
 -  dest kertoo minne tiedosto web-palvelimella menee
+-  service: hallitsee palveluita (nginx), käynnistää palvelun nyt ja automaattisesti
 
 <img width="354" height="339" alt="image" src="https://github.com/user-attachments/assets/951490c7-f3f8-49fc-98cb-ae09743e3071" />
 
 
 **Handlers -hakemisto**
 
+Handlerit toimivat "triggereinä", jotka aktivoituvat vain silloin kun jokin on muuttunut. Ilman handleria toimintoja saatettaisiin ajaa "turhaan" joka kerta. Kyseinen handler siis potkaisee demonia pysäyttämällä ja käynnistämällä sen uudelleen samalla hakien uudet konffaukset.
+
 <img width="249" height="115" alt="image" src="https://github.com/user-attachments/assets/1d1bc595-f393-4373-b9f1-d608953b1ca9" />
 
 
 **Files -hakemisto**
+
+Sisältää tiedostoja, jotka kopioidaan suoraan palvelimelle. Tässä tapauksessa se siis kopioi index.html -tiedoston esiin webbisivulle. 
 
 <img width="420" height="234" alt="image" src="https://github.com/user-attachments/assets/ef4e977f-a90d-498e-a994-edb2ccd15584" />
 
