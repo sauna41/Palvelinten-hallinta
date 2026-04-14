@@ -1,12 +1,12 @@
-Kurssi: Palvelinten hallinta ICI001AS3A-3011
+_Kurssi: Palvelinten hallinta ICI001AS3A-3011__
 
-Tekijä: Henri Äikäs
+_Tekijä: Henri Äikäs_
 
-Alusta: Intel i5 Macbook Pro MacOs Sequaoia 15.7.2 / Debian 13 trixie (VirtualBox)
+_Alusta: Intel i5 Macbook Pro MacOs Sequaoia 15.7.2 / Debian 13 trixie (VirtualBox)_
 
-Päivämäärä: 13.4.2026
+_Päivämäärä: 13.4.2026_
 
-Tämä raportti on osa Haaga-Helian Palvelinten hallinta -kurssia keväällä 2026. Tehtävänanto on h3 Demoni. Opettajana toimi Tero Karvinen.
+_Tämä raportti on osa Haaga-Helian Palvelinten hallinta -kurssia keväällä 2026. Tehtävänanto on h3 Demoni. Opettajana toimi Tero Karvinen._
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
