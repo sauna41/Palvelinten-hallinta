@@ -12,18 +12,37 @@ ________________________________________________________________________________
 
 ### **x) Lue ja tiivistä**
 
-Karvinen 2026: Apache installed with Ansible - quick notes
+#### [Karvinen 2026: Apache installed with Ansible - quick notes](https://terokarvinen.com/apache-ansible/)
 
-Ansible Community Documentation: Handlers: running operations on change
+- Apache voidaan asentaa Ansiblella apt-pakettina. Tällöin palvelin saadaan automaattisesti käyttöön.
+- Konffaukset toteutetaan package-file-service mallilla, jossa ladataan ensin paketti, sitten tiedostot ja viimeisenä palvelu käynnistetään.
+- Muutokset eivät tule itsestään voimaan, vaan demonia täytyy potkaista.
+- Tällä tavoin pyritään idempotenttiin ja Ansiblella automatisoituun web-palvelimen hallintaan.
 
-Handlers: running operations on change (johdantokappale pääotsikon alta)
-Notifying handlers
+### [Ansible Community Documentation: Handlers: running operations on change & Notifying handlers](https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_handlers.html)
 
-'ansible-doc service':
-johdantokappale (MODULE alta)
-enabled
-name
-state
+- Handlerit ovat Ansiblen tehtäviä, jotka ajetaan vain kun muutoksia tapahtuu
+- Yleinen käyttötapa on konfiguraatiomuutoksen yhteydessä tapahtuva uudelleenkäynnistys
+- Ne aktivoituvat notify -komennon avulla pelikirjan lopussa.
+- Tavoitteena on estää palvelua käynnistymästä uudelleen turhaan, tehostaen samalla automaation tehokkuutta
+
+
+#### 'ansible-doc service' -dokumentaatio:
+
+Johdantokappale
+- ansible.builtin.service hallitsee palveluita etäpalvelimilla.
+- Tukee erilaisia init systeemejä.
+- Moduuli toimii välittäjänä eri service managereille
+- Tarkoituksena on hallita palveluita eri ympäristöissä ilman, että jokaiselle täytyy rakentaa omat virityksensä
+
+enabled: 
+- Määrittää, käynnistyykö palvelu boottauksen yhteydessä
+  
+name: 
+- Hallitun palvelun nimi, esimerkiksi nginx tai apache2
+
+state:
+- started/stopped tarkistaa, onko palvelu käynnissä. restarted käynnistää aina uudelleen ja reloaded lataa konfiguraatiot uudelleen ilman uudelleenkäynnistystä. Vähintään state määriteltä on löydyttävä.
 EXAMPLES
 
 ________________________________________________________________________________________________________________________________________________________________________________________
