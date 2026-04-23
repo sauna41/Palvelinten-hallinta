@@ -20,9 +20,9 @@ ________________________________________________________________________________
 
 
 ### a) Räpylä. 
-<sup<Asenna itse valitsemasi demoni käsin. Jokin muu kuin tunnilla tai kotitehtävissä aiemmin asennettu, eli ei apache, ngninx eikä openssh-server. Kuten aina, testaa lopputulos.</sup>
+<sup>Asenna itse valitsemasi demoni käsin. Jokin muu kuin tunnilla tai kotitehtävissä aiemmin asennettu, eli ei apache, ngninx eikä openssh-server. Kuten aina, testaa lopputulos.</sup>
 
-Päätin valita käyttööni **crondin**, jonka avulla on mahdollista ajastaa prosesseja, kuten luoda varmuuskopioita, lähettää sähköposteja tai kerätä systeemiraportteja. Demoni hyödyntää crontab -tiedostoja, josta se lukee toimenpiteet ja aikataulun. Asensin crondin käsin 
+Päätin valita käyttööni **cronin**, jonka avulla on mahdollista ajastaa prosesseja, kuten luoda varmuuskopioita, lähettää sähköposteja tai kerätä systeemiraportteja. Demoni hyödyntää crontab -tiedostoja, josta se lukee toimenpiteet ja aikataulun. Asensin cronin käsin 
 
     apt update
     apt install crond -y
@@ -30,11 +30,11 @@ Päätin valita käyttööni **crondin**, jonka avulla on mahdollista ajastaa pr
   <img width="658" height="291" alt="image" src="https://github.com/user-attachments/assets/9d5449a5-231b-4d81-8897-89c11c7e36c3" />
 
 
-Seuravaksi loin tiedoston, jolla crondin toimintaa pystyttiin tastata.
+Seuravaksi loin tiedoston, jolla cronin toimintaa pystyttiin testata.
 
     sudo micro /etc/cron.d/crontest
 
-Tiedostoon kirjoitettin ajastus, joka merkataan tähdillä (*). Jokainen tähti kertoo crondille, kuinka usein toiminto tulee suorittaa: 1 = minuutti, 2 = tunti jne. Kyseinen tiedosto siis tulostaa tekstiä joka minuutti, tunti, päivä ja kuukausi. 
+Tiedostoon kirjoitettin ajastus, joka merkataan tähdillä (*). Jokainen tähti kertoo cronille, kuinka usein toiminto tulee suorittaa: 1 = minuutti, 2 = tunti jne. Kyseinen tiedosto siis tulostaa tekstiä joka minuutti, tunti, päivä ja kuukausi. 
 
 <img width="627" height="49" alt="image" src="https://github.com/user-attachments/assets/c0731453-2ea9-46b5-806d-3121cdfa443b" />
 
@@ -49,6 +49,23 @@ ________________________________________________________________________________
 
 ### b) Automaatti. 
 <sup>Automatisoi valitsemasi demonin asennus Ansiblella.</sup>
+
+Aloitin luomalla uuuden cron-roolin ja lisäämällä sen alle aiemmista tehtävistä tutut files, handlers & tasks -hakemistot. Lopulta hakemistopuu näytti siis tältä:
+
+<img width="719" height="274" alt="image" src="https://github.com/user-attachments/assets/2b1ecdfc-1d37-4fa7-b296-56ff3b06a0b1" />
+
+- Asetustiedosto (/files/testcron) sisälsi a) kohdassa käytetyn tulosteen.
+  
+- Handler (handler/main.yml) vastasi cronin uudelleenkäynnistämisestä.
+
+  <img width="340" height="137" alt="image" src="https://github.com/user-attachments/assets/89990992-215d-4818-9a23-4b50bcb09010" />
+
+
+- Tasks (tasks/main.yml) määritti tehtävät
+
+<img width="523" height="553" alt="image" src="https://github.com/user-attachments/assets/c72e9946-609f-4590-94a1-4b867bde8ed8" />
+
+
 
 
 <img width="637" height="533" alt="image" src="https://github.com/user-attachments/assets/d99ca6db-860b-47f9-a7c5-5c82105f15dc" />
