@@ -61,12 +61,13 @@ ________________________________________________________________________________
 
 
 ### c) Asetus. 
-<sup>uuta asetustiedostoa herralla (master, "control node") ja aja ansible uudestaan. Osoita, että asetukset tulivat käyttöön.</sup>
+<sup>Muuta asetustiedostoa herralla (master, "control node") ja aja ansible uudestaan. Osoita, että asetukset tulivat käyttöön.</sup>
 
-Muokkasin asetustiedostoa vaihtamalla sinne "Asetuksia muokattu" -rivin. 
+Muokkasin asetustiedostoa Ansible-koneella (control node) vaihtamalla sinne "Asetuksia muokattu" -rivin. 
 
       micro apache/roles/cron/files/testcron
-      # 
+      * * * * * root echo "cron toimii $(date)" >> /tmp/cron_test.log #Lisätty "MUUTETTU" -teksti
+      
 Kun Ansible ajettiin, muutokset olivat nähtävissä cron-logissa.
 
         cat /tmp/cron_test.log
