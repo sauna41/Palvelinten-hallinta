@@ -10,11 +10,35 @@ _Tämä raportti on osa Haaga-Helian Palvelinten hallinta -kurssia keväällä 2
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-x) Lue ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva. Ei siis vaadita pitkää eikä essee-muotoista tiivistelmää. Lisää kuhunkin jokin oma kysymys tai huomio.)
-Karvinen 2023: Configuration Management of Distributed Systems over Unreliable and Hostile Networks (pdf, ̣mirrors: local, archive.org), vain nämä kohdat:
-4.12.1 Size and Complexity of Some DSLs (112. Ominaisuuksien määrä.)
-4.12.2 Use of DSL Functions in Case Configuration (112-115. Mitä oikeasti käytetään.)
-4.12.3.1 Dependencies Between Main Functions (115-117. Tärkeimmät rakennuspalikat.)
+x) Lue ja tiivistä.
+### [Karvinen 2023: Configuration Management of Distributed Systems over Unreliable and Hostile Networks](https://westminsterresearch.westminster.ac.uk/item/w7vvz/configuration-management-of-distributed-systems-over-unreliable-and-hostile-networks)
+
+
+#### 4.12.1 Size and Complexity of Some DSLs (112. Ominaisuuksien määrä)
+
+- DSL-kielet ovat laajoja ja monipuolisia. Dokumentaatiota on paljon funktioita todella iso määrä.
+    - Saltissa funktioita on noin 510 ja Puppetissa 113.
+- Käytännössä hyödynnetiin kuitekin huomattavasti pienempää määrää funktioita.
+- 
+
+
+  
+#### 4.12.2 Use of DSL Functions in Case Configuration (112-115. Mitä oikeasti käytetään.)
+
+- file, package, exec ja service koostavat valtaosan käytöstä (n >58%).
+- kaikkien muiden yksittäisten funktioiden käyttö jää alle 10%. Esimerkiksi node, cron tai group.
+
+#### 4.12.3.1 Dependencies Between Main Functions (115-117. Tärkeimmät rakennuspalikat.)
+  
+- Yleisimämät rakennuspalikat ovat package, file, service, user, group ja exec
+- Käyttötapaukset ovat yleensö
+    - demonit
+    - sovellukset
+    - käyttäjät
+    - tiedostonhallinta
+- Järjestelmän tulee pyrkiä idempotentiksi, jolloin muutoksia tehdään vain tarvittaessa. Toteutuu if-kyselyillä.
+- Monet korkeamman tason toiminnot rakentuvat peruspalikoiden, eli file & exec päälle. Hyvin pienestä joukosta perustoimintoja voidaan rakentaa monimutkaisempia toimintoja.
+- Kun laajat ja monimutkaiset järjestelmät pilkotaan pienemmiksi, voidaan huomata, että suurin osa toiminnasta perustuu pieneen määrään ydintoimintoja. 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -66,21 +90,24 @@ Aloitin luomalla uuuden cron-roolin ja lisäämällä sen alle aiemmista tehtäv
 <img width="523" height="553" alt="image" src="https://github.com/user-attachments/assets/c72e9946-609f-4590-94a1-4b867bde8ed8" />
 
 
-
+Lopuksi testattiin ajamalla pelikirja. 
 
 <img width="637" height="533" alt="image" src="https://github.com/user-attachments/assets/d99ca6db-860b-47f9-a7c5-5c82105f15dc" />
 
+Lopputulosta voitiin testata tarkastelemalla, oliko cronin lokiin ilmestynyt mitään. 
 
+        cat /tmp/cron_test.log
+
+        
 <img width="616" height="36" alt="image" src="https://github.com/user-attachments/assets/2841daa2-735c-4ded-80cd-eb6eb3cafb81" />
 
-Toimii
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
 ### c) Asetus. 
 <sup>Muuta asetustiedostoa herralla (master, "control node") ja aja ansible uudestaan. Osoita, että asetukset tulivat käyttöön.</sup>
 
-Muokkasin asetustiedostoa Ansible-koneella (control node) vaihtamalla sinne "Asetuksia muokattu" -rivin. 
+Muokkasin asetustiedostoa (files/testcron) Ansible-koneella (control node) vaihtamalla sinne "Asetuksia muokattu" -rivin. 
 
       micro apache/roles/cron/files/testcron
       * * * * * root echo "cron toimii $(date)" >> /tmp/cron_test.log #Lisätty "MUUTETTU" -teksti
@@ -139,7 +166,9 @@ Idempotentti voidaan todentaa ajamallla playbook. Se kertoo, onnistuiko vai epä
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-Lähteet:
+_Lähteet:_
+
+Karvinen, T. Palvelinten Hallinta. Luettavissa: https://terokarvinen.com/palvelinten-hallinta/. Luettu 20.4.2026. 
 
 Karvinen, T. Configuration Management of Distributed Systems over Unreliable and Hostile Networks. 2024. Luettavissa: https://westminsterresearch.westminster.ac.uk/item/w7vvz/configuration-management-of-distributed-systems-over-unreliable-and-hostile-networks. Luettu 20.4.2024.
 
