@@ -18,9 +18,7 @@ x) Lue ja tiivistä.
 
 - DSL-kielet ovat laajoja ja monipuolisia. Dokumentaatiota on paljon funktioita todella iso määrä.
     - Saltissa funktioita on noin 510 ja Puppetissa 113.
-- Käytännössä hyödynnetiin kuitekin huomattavasti pienempää määrää funktioita.
-- 
-
+- Oikeassa käytössä hyödynnetään kuitenkin huomattavasti pienempää määrää funktioita.
 
   
 #### 4.12.2 Use of DSL Functions in Case Configuration (112-115. Mitä oikeasti käytetään.)
@@ -31,7 +29,7 @@ x) Lue ja tiivistä.
 #### 4.12.3.1 Dependencies Between Main Functions (115-117. Tärkeimmät rakennuspalikat.)
   
 - Yleisimämät rakennuspalikat ovat package, file, service, user, group ja exec
-- Käyttötapaukset ovat yleensö
+- Käyttötapaukset ovat yleensä
     - demonit
     - sovellukset
     - käyttäjät
@@ -54,7 +52,7 @@ Päätin valita käyttööni **cronin**, jonka avulla on mahdollista ajastaa pro
   <img width="658" height="291" alt="image" src="https://github.com/user-attachments/assets/9d5449a5-231b-4d81-8897-89c11c7e36c3" />
 
 
-Seuravaksi loin tiedoston, jolla cronin toimintaa pystyttiin testata.
+Seuraavaksi loin tiedoston, jolla cronin toimintaa pystyttiin testata.
 
     sudo micro /etc/cron.d/crontest
 
@@ -160,7 +158,7 @@ Idempotentti voidaan todentaa ajamallla playbook. Se kertoo, onnistuiko vai epä
 
 <img width="861" height="183" alt="image" src="https://github.com/user-attachments/assets/275f63fe-79d4-471a-bceb-b48bdabff8c2" />
 
-**_Toinen ajo ei enää tehnyt muutoksia (changes = 0)._**
+**_Toinen ajo ei enää tehnyt muutoksia (changed = 0)._**
 
 
 
@@ -172,4 +170,4 @@ Karvinen, T. Palvelinten Hallinta. Luettavissa: https://terokarvinen.com/palveli
 
 Karvinen, T. Configuration Management of Distributed Systems over Unreliable and Hostile Networks. 2024. Luettavissa: https://westminsterresearch.westminster.ac.uk/item/w7vvz/configuration-management-of-distributed-systems-over-unreliable-and-hostile-networks. Luettu 20.4.2024.
 
-Wilson, J. Crond: Daemon to Execute Scheduled Commands. Rosehosting. 2024. Luettavissa: https://www.rosehosting.com/blog/crond-daemon-to-execute-scheduled-commands/. Luettu 20.4.2026.
+Wilson, J. Cron: Daemon to Execute Scheduled Commands. Rosehosting. 2024. Luettavissa: https://www.rosehosting.com/blog/crond-daemon-to-execute-scheduled-commands/. Luettu 20.4.2026.
