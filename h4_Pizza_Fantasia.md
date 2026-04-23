@@ -61,13 +61,17 @@ ________________________________________________________________________________
 
 
 ### c) Asetus. 
-<sup<Muuta asetustiedostoa herralla (master, "control node") ja aja ansible uudestaan. Osoita, että asetukset tulivat käyttöön.</sup>
+<sup>uuta asetustiedostoa herralla (master, "control node") ja aja ansible uudestaan. Osoita, että asetukset tulivat käyttöön.</sup>
 
 Muokkasin asetustiedostoa vaihtamalla sinne "Asetuksia muokattu" -rivin. 
 
       micro apache/roles/cron/files/testcron
       # 
+Kun Ansible ajettiin, muutokset olivat nähtävissä cron-logissa.
 
+        cat /tmp/cron_test.log
+
+<img width="644" height="93" alt="image" src="https://github.com/user-attachments/assets/fc341c52-7b47-4eb1-88d3-6f8f344a6670" />
 
 
 
@@ -77,6 +81,23 @@ ________________________________________________________________________________
 ### d) Paikka remonttiin. 
 <sup>Riko jotain asetuksia. Voit esimerkiksi poistaa demonin 'sudo apt-get purge foobar' (purge poistaa myös asetustiedostoja), poistaa asennuksen yhteydessä tulevan kansion (sudo rm -r /etc/foobar/ # vaarallista) tms. Ja sitten ajaa ansible-roolisi uudestaan ja todeta, että se korjaa tilanteen.</sup>
 
+Päätin käyttää esimerkin 'sudo apt-get purge cron' -menetelmää asetusten rikkomiseen. Purge -komento siis poistaa niin cron-paketin että sen asetustiedostot. 
+
+        sudo apt purge cron
+
+Tarkastettiin, että komento todella rikkoi cronin. 
+
+        systemctl status cron
+        which cron
+
+<img width="839" height="118" alt="image" src="https://github.com/user-attachments/assets/d88cf5e1-09a2-4fb7-b650-18a719b15538" />
+
+Kun cron oli todistetusti poistettu, voitiin ajaa uudelleen sama tuttu pelikirja. Sen tulisi nyt asentaa cron ja lokiin tulisi päätyä lisää tekstiä. Uutta cron ajoa jouduttiin odottamaan minuutti. 
+
+    ansible-playbook -i hosts.ini site.yml #Aejataan pelikirja
+    cat /tmp/cron_test.log
+
+<img width="679" height="77" alt="image" src="https://github.com/user-attachments/assets/90841155-2b99-44c5-800b-2acd5550d1cb" />
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
@@ -84,6 +105,17 @@ ________________________________________________________________________________
 
 ### e) Idempotentti. 
 <sup>Osoita, että tilasi on idempotentti.</sup>
+
+Idempotentti voidaan todentaa ajamallla playbook. Se kertoo, onnistuiko vai epäonnistuiko tehtävä ja tehtiinko muutoksia (changes). Tavoitteena siis on, että jos mitään muutettavaa ei ole, Ansible ei tee turhaa työtä vaan ohittaa jo voimassaolevat asiat. Kun aiemmassa tehtävässä d) Paikka remonttiin ajoin pelikirjan, cron asennettiin ja pelikirjan Recapissa nähtiin, että muutoksia tehtiin. Nyt kun pelikirjan ajoi uudestaan, cronia ei asennettu uudelleen eikä muutoksia täten tehty. 
+
+<img width="865" height="134" alt="image" src="https://github.com/user-attachments/assets/a2287efa-ad9c-4300-99f2-7fe6be9fe026" />
+
+**_Aiempi cronin asennus teki muutoksia_**
+
+
+<img width="861" height="183" alt="image" src="https://github.com/user-attachments/assets/275f63fe-79d4-471a-bceb-b48bdabff8c2" />
+
+**_Toinen ajo ei enää tehnyt muutoksia (changes = 0)._**
 
 
 
