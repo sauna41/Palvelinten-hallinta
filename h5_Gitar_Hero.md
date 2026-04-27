@@ -6,14 +6,20 @@ _Alusta: Intel i5 Macbook Pro MacOs Sequaoia 15.7.2 / Debian 13 trixie (VirtualB
 
 _Päivämäärä: 27.4.2026_
 
-_Tämä raportti on osa Haaga-Helian Palvelinten hallinta -kurssia keväällä 2026. Tehtävänanto on h4 Piza Fantasia. Opettajana toimi Tero Karvinen._
+_Tämä raportti on osa Haaga-Helian Palvelinten hallinta -kurssia keväällä 2026. Tehtävänanto on h5 Gitar Hero. Opettajana toimi Tero Karvinen._
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-Lue ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva. Kannattaa lisätä mukaan myös jokin oma havainto, idea tai kysymys.)
-Chacon and Straub 2014: Pro Git, 2ed: 1.3 Getting Started - What is Git?
-Gitin käyttö on lähinnä 'git add --all && git commit; git pull && git push'. Selitä tuon komennon jokainen osa. Käytä apuna itse valitsemiasi lähteitä ja viittaa niihin.
+### Lue ja tiivistä: [What Is Git?](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F)
 
+- Git eroaa monista muista versionhallinnoista siinä, että se tallentaa tietoa projekteista napsimalla ikään kuin tallennekuvia jokaisen commitin yhteydessä. Projektin edetessä Git vertaa ottamiaan "kuvia" aiempiin, josta se pystyy havaitsemaan muutokset.
+- Lähes kaikki Gitin toiminta tapahtuu paikallisesti, joka tekee siitä erittäin nopean sekä taipuvaisen. Se ei ole riippuvainen verkkoyhteydestä tai toiselle puolelle maailmaa yhteyden ottamisesta. Commitit voidaan siis tehdä paikallisesti ja linkittää myöhemmin verkkoon.
+- Git varmistaa, että tiedostot ovat eheitä käyttämällä SHA-1 hashia. Se siis muodostaa jokaisesta tiedostostaan 40-merkkisen arvon, joka muuttuu tiedostoa muokattaessa. Tällöin tiedostoja on käytännössä mahdotonta muokata ilman, että Git tietäisi asiasta.
+- Git lähinnä lisää dataa. Koska se muistaa aina committien aikana tapahtuneet tilannekatsaukset, ei tiedon katoaminen ole helppoa. Sen avulla on myös turvallista testata, koska kaiken voi peruuttaa tai poistaa.
+- Gitillä on käytössään kolme aluetta: _modified, staging & committed_.
+      - modified kertoo, että tiedostoa on muokattu mutta sitä ei ole  vielä tallennettu
+      - staged alueella olevat muutokset on ikään kuin nostettu työpöydälle valmiina seuraavaan tallennukseen (commit)
+      - committed tarkoittaa, että tiedosto on tallennettu paikalliseen tietokantaan.  
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### a) Online. 
@@ -179,3 +185,14 @@ g) Se toinen järjestelmä
 
 h) Yteistyötä
 <sup>anna kaverillesi (tai alter egollesi) oikeus kirjoittaa varastoosi (commit access). Tehkää molemmat muutoksia varastoon gitillä.</sup>
+
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
+
+### Lähteet:
+
+Karvinen, T. Palvelinten Hallinta opintojakson kurssimateriaali. 2026. Luettavissa: https://terokarvinen.com/palvelinten-hallinta/. Luettu 27.4.2026.
+
+Chacon and Straub. Pro Git. 2014. Kappale 1.3. Getting Started - What is Git?. Luettavissa: https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F. Luettu 27.4.2026.
+
