@@ -84,25 +84,98 @@ ________________________________________________________________________________
 ### c) Doh! 
 <sup>Tee tyhmä muutos gittiin, älä tee commit:tia. Tuhoa huonot muutokset ‘git reset --hard’. Huomaa, että tässä toiminnossa ei ole peruutusnappia.</sup>
 
+Kirjoitin jälleen tekstiä README.md tiedostoon. 
 
+      echo "Tämä teksti on virheellinen eikä kuuluisi tänne" >> README.md
+
+
+Tarkastelin nyt gitin tilannetta 
+
+      git status
+
+<img width="538" height="170" alt="image" src="https://github.com/user-attachments/assets/7fba7c1e-f343-4c2c-8b34-cab8226bd070" />
+
+Ilmoitus kertoo, että README.md tiedostossa on muutoksia mutta mitään ei ole vielä asetettu commitoitavaksi. Tämä on hyvä, sillä en halunnut tämän väärin tekstin päätyvään repoon. Ilmoitus ehdottaa, että käyttäisin git restore <file> -komentoa peruuttaakseni muutokset, mutta hyödynsin tällä kertaa tehtävännon mukaisesti 'git reset --hard' -komentoa. Erona näillä kahdelle on se, että 'git restore' palauttaa yksittäisen tiedoston viimeisimmän commitin tilaan kun taas 'git reset --hard' palauttaa koko projektin.
+
+<img width="489" height="121" alt="image" src="https://github.com/user-attachments/assets/c01ad716-f173-4ad4-86f8-e6ea6cb2be4f" />
+
+Komento palautti tilanteen aiempaan committiin asti. 'git status' kommennolla voitiin vielä todentaa, että "virheellinen" lisäys ei enää näkynyt lokissa muutoksena.
+________________________________________________________________________________________________________________________________________________________________________________________
+
+
+d) Tukki. 
+<sup>Tarkastele ja selitä varastosi lokia. Näytä myös, mitä muutoksia tiedostoihin on tehty. Tarkista, että nimesi ja sähköpostiosoitteesi näkyy haluamallasi tavalla ja korjaa tarvittaessa.</sup>
+
+Lokia voitiin tutkia eri usealla eri komennolla. 
+
+      git log    #perustarkastelu
+      git log --oneline    #kompakti, yhden rivin loki
+      git log --stat    #näyttää tiedostomuutokset
+      git config --global user.name    #gittiin määritellyn käyttäjänimen tarkastaminen
+      git confing --global user.email    #gittiin määritellyn sähköpostin tarkastaminen
+
+#### git log
+
+<img width="669" height="204" alt="image" src="https://github.com/user-attachments/assets/3536a976-9970-4dec-bfc6-b118d5a0415c" />
+
+Lokissa näkyi sunshine-palvelinten luominen, eli initial commit GitHubissa. Aiemmassa tehtävässä muokattu README -tiedostoon lisäys löytyi myös lokista. Myös "kirjaaja" oli tallentunut lokiin: GitHub käyttäjä sauna41 oli luonut repositorion ja Henri Äikäs tehnyt viimeisimmän muutoksen.
+
+#### git log --stat
+
+<img width="700" height="320" alt="image" src="https://github.com/user-attachments/assets/7b3bc236-bc38-4a95-aea1-5d03a9f2d5f3" />
+
+'-- stat' lisäys tietoa hieman tarkemmin. Lisätietoina aiempaan verrattuna on, että komento tarkastaa mitä muutoksia on tehty ja kuinka paljon. README.md -tiedostoa muokkaamalla lisättiin tiedostoon yksi rivi, joka näkyy "1 insertion (+)" kohdassa. Jos tiedostosta olisi vastaavasta poistettu jotain, olisi sen tilalla deletions (-). Numeromäärä kertoo muutettujen **rivien** määrän.
+
+#### git config --global user.name + user.email
+
+<img width="596" height="73" alt="image" src="https://github.com/user-attachments/assets/a75191d7-bd6b-404b-89b5-361feb0b86e3" />
+
+Komennoilla voitiin tarkastaa gittiin määritetty käyttäjänimi ja sähköpostiosoite. Nämä tiedot pitivät paikkansa, eivätkä täten vaatineet muutoksia. 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
-d) Tukki. Tarkastele ja selitä varastosi lokia. Näytä myös, mitä muutoksia tiedostoihin on tehty. Tarkista, että nimesi ja sähköpostiosoitteesi näkyy haluamallasi tavalla ja korjaa tarvittaessa.
+### e) Gitanbile.
+<sup>Laita Ansible-kansio versionhallintaan. Tee jokin muutos, aja ansiblella, tallenna versio (commit).</sup>
 
+Kurssilla paljon käytetyn Ansible-kansion lisääminen GitHubiin alkoi alustamalla kyseinen hakemisto gittiin. 
+
+<img width="627" height="224" alt="image" src="https://github.com/user-attachments/assets/724d0a8f-d540-49a8-b8db-bc3976f2529d" />
+
+Seuraavaksi lisäsin kaikki tiedostot
+
+      git add --all
+      git commit -m "Ansible-kansio versionhallintaan"
+
+Tämän jälkeen muokkasin aiemmissa tehtävissä käytettyä paketit.yml -tiedostoa. Sen alkuperäinen tarkoitus oli asentaa git & nginx mutta lisäsin listalle myös apache2. Ajoin tämän jälkeen paketit.yml uudelleen. 
+
+      ansible-playbook paketit.yml
+
+Tallensin tuoreet muutokset lisäämällä ne staging-alustalle ja committaamalla ne kirjauksen kera
+
+      git add --all
+      git commit -m "Päivitetty paketit.yml asentamaan apache2"
+
+Muutoksia pystyttiin jälleen tarkastelemaan lokin avulla. Koska ansible-kansiossa oli paljon tavaraa, en lähtenyt käsin etsimään kaiken seasta juuri paketit.yml muutoksia, vaan tarkensin niihin 'git show paketit.yml' komennolla
+
+<img width="507" height="270" alt="image" src="https://github.com/user-attachments/assets/dc85a443-84a5-4937-92aa-49100579d5db" />
+
+Tulostuksena näkyi siis juuri tekemäni commit message ja tiedostoon tehdyt muutokset. _-apache2_ rivi oli siis onnistuneesti lisätty myös versionhallintaan.
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
-e) Gitanbile. Laita Ansible-kansio versionhallintaan. Tee jokin muutos, aja ansiblella, tallenna versio (commit).
+### f) Hae pari projektiin Moodlen keskustelusta.
+
+Tämä on vielä työn alla!
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
+### Vapaaehtoiset lisätehtävät
 
-f) Hae pari projektiin Moodlen keskustelusta. (Tästä alakohdasta f ei tarvitse tehdä vaiheittaista teknistä raporttia, riittää kun toteat, että pari on hankittu.)
+**Eivät vielä valmiina. Suoritan nämä loppuun ja päivitän tänne ennen kurssin päätöstä.**
 
-________________________________________________________________________________________________________________________________________________________________________________________
+g) Se toinen järjestelmä
+<sup>kokeile Gittiä eri käyttöjärjestelmällä kuin sillä, millä teit muut harjoitukset. Selitä niin, että kyseistä järjestelmää osaamatonkin onnistuu. Mahdollisuuksia on runsaasti: Debian, Fedora, Windows, OSX...</sup>
 
-
-g) Vapaaehtoinen: Se toinen järjestelmä: kokeile Gittiä eri käyttöjärjestelmällä kuin sillä, millä teit muut harjoitukset. Selitä niin, että kyseistä järjestelmää osaamatonkin onnistuu. Mahdollisuuksia on runsaasti: Debian, Fedora, Windows, OSX...
-h) Vapaaehtoinen: yhteistyötä: anna kaverillesi (tai alter egollesi) oikeus kirjoittaa varastoosi (commit access). Tehkää molemmat muutoksia varastoon gitillä.
+h) Yteistyötä
+<sup>anna kaverillesi (tai alter egollesi) oikeus kirjoittaa varastoosi (commit access). Tehkää molemmat muutoksia varastoon gitillä.</sup>
