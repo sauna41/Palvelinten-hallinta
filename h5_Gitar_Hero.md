@@ -196,3 +196,5 @@ Karvinen, T. Palvelinten Hallinta opintojakson kurssimateriaali. 2026. Luettavis
 
 Chacon and Straub. Pro Git. 2014. Kappale 1.3. Getting Started - What is Git?. Luettavissa: https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F. Luettu 27.4.2026.
 
+Chacon and Straub. Pro Git. 2014. Dokumentaatio komennoista add, commit, pull & push. Luettavissa: https://git-scm.com/docs. Luettu 27.4.2026. 
+
