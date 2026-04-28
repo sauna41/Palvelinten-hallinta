@@ -19,13 +19,25 @@ ________________________________________________________________________________
 - Gitillä on käytössään kolme aluetta: _modified, staging & committed_.
       - modified kertoo, että tiedostoa on muokattu mutta sitä ei ole  vielä tallennettu
       - staged alueella olevat muutokset on ikään kuin nostettu työpöydälle valmiina seuraavaan tallennukseen (commit)
-      - committed tarkoittaa, että tiedosto on tallennettu paikalliseen tietokantaan.  
+      - committed tarkoittaa, että tiedosto on tallennettu paikalliseen tietokantaan.
+
+
+#### [Yleisimmät komennot](https://git-scm.com/docs)
+
+- git add
+      - Lisää kaikki muutokset staging-alueelle. 
+- git commit
+      - Tallentaa staging-alueella olevat tiedostot git-tietokantaan. 
+- git pull
+      - Hakee etärepositorion muutokset ja yhdistää ne paikalliseen haaraan
+- git push
+      - Puskee paikallliset muutokset etärepositorioon. 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### a) Online. 
 <sup>Tee uusi varasto GitHubiin (tai Gitlabiin tai mihin vain vastaavaan palveluun).Varaston nimessä ja lyhyessä kuvauksessa tulee olla sana "sunshine". Aiemmin tehty varasto ei kelpaa. (Muista tehdä varastoon tiedostoja luomisvaiheessa, esim README.md ja GNU General Public License 3) Edistyneemmille voi olla hauskaa etsiä ja kokeilla jokin muu palvelu kuin Github.</sup>
 
-Loin GithHubiin uuden repositorion nimeltään "Sunshine-Palvelimet". Lisäsin ohjeiden mukaisesti README- ja GNU -tiedostot. 
+Loin GitHubiin uuden repositorion nimeltään "sunshine-Palvelimet". Lisäsin ohjeiden mukaisesti README- ja GNU -tiedostot. 
 
 <img width="1204" height="605" alt="image" src="https://github.com/user-attachments/assets/d3d63927-fd29-4549-85c4-21aef8ebda0e" />
 
@@ -52,13 +64,13 @@ Tämän jälkeen päästiin itse asiaan. Githubissa sijaitseva sunshine-palvelin
 
 Nyt sunshine-palvelinten hakemistoon pystyttiin navigoimaan komentoriviltä. Kirjoitin repon luomisen yhteydessä tehtyyn README-tiedostoon päivityksen suoraan komentoriviltä
 
-    echo "### README päivitetty komeentoriviltä käsin" >> README.md
+    echo "### README päivitetty komentoriviltä käsin" >> README.md
 
-Muutos ei näkyi nyt paikallisesti mutta ei vielä GitHubissa. Muutos täytyi siis committaa ja pushata ulos, jotta se synkronoituisi GitHubin näkymän kanssa. 
+Muutos näkyi nyt paikallisesti mutta ei vielä GitHubissa. Muutos täytyi siis committaa ja pushata ulos, jotta se synkronoituisi GitHubin näkymän kanssa. 
 
     git add README.md    # Lisätään tiedosto staging -alustalle
     git commit -m "Lisätty tekstiä README-tiedostoon    # Kirjoitetaan commit-message, joka kuvaa tapahtumia
-    git pull   # Tarkistetaan onko GitHubin päässä ollut muutoksia ja tarvittaessa vedetään muutokset paikalliseen versioon
+    git pull   # Tarkistetaan onko GitHubin päässä ollut muutoksia ja tarvittaessa vedetään muutokset paikalliseen versioon. Näin toimitaan aina ajantasaisen version kanssa.
     git push   # Työnnetään muutokset GitHubiin
 
 ##### Salasana ongelmia
@@ -118,7 +130,7 @@ Lokia voitiin tutkia eri usealla eri komennolla.
       git log --oneline    #kompakti, yhden rivin loki
       git log --stat    #näyttää tiedostomuutokset
       git config --global user.name    #gittiin määritellyn käyttäjänimen tarkastaminen
-      git confing --global user.email    #gittiin määritellyn sähköpostin tarkastaminen
+      git config --global user.email    #gittiin määritellyn sähköpostin tarkastaminen
 
 #### git log
 
