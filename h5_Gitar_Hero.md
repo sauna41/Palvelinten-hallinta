@@ -96,6 +96,9 @@ Push näytti nyt toimivan. Asia oli helppo varmentaa tarkastamlla, näkyivätkö
 <img width="857" height="552" alt="image" src="https://github.com/user-attachments/assets/b23ccba6-daa3-41fd-a081-8e4160c2890b" />
 
 Lisätty teksti saatiin onnistuneesti puskettua paikallisesti Githubiin.
+
+
+_JÄLKIEDIT: Tajusin vasta jälkikäteen, että Tokenin sijaan yhteyden olisi todennäköisesti saanut toimimaan myös SSH-yhteydellä. GitHubin repositorioon olisi tullut linkittää julkinen SSH-avain, joka olisi mahdollistanut vuorovaikutuksen paikallisen kansion kanssa.__
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
@@ -184,7 +187,7 @@ ________________________________________________________________________________
 
 ### f) Hae pari projektiin Moodlen keskustelusta.
 
-Tämä on vielä työn alla!
+Pari hankittu.
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
